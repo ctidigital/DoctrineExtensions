@@ -370,10 +370,17 @@ class NestedTreeRepository extends AbstractTreeRepository
             $right = $meta->getReflectionProperty($config['right'])->getValue($node);
             $left = $meta->getReflectionProperty($config['left'])->getValue($node);
 
+            /*
+             * Commented out the below code as it causes more issues than it
+             * solves - premature optimisation to blame?
+             */
+            /*
             if ($right == $left + 1) {
                 $this->removeSingle($node);
                 return; // node was a leaf
             }
+             */
+            
             // process updates in transaction
             $this->_em->getConnection()->beginTransaction();
             try {
